@@ -23,3 +23,6 @@ sentinel_output.jsonl
 # IDE
 .vscode/
 .idea/
+
+# Project Documentation
+project_requirements.md

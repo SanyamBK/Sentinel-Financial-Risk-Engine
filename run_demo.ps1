@@ -9,9 +9,9 @@ if (-not $env:GOOGLE_API_KEY) {
 }
 
 # 2. Start Backend Engine (Background)
-Write-Host "Starting Sentinel Engine (src/engine.py)..." -ForegroundColor Cyan
-# Use venv python
-$backend = Start-Process ".venv\Scripts\python.exe" -ArgumentList "src/engine.py" -PassThru -WindowStyle Minimized
+Write-Host "Starting Sentinel Engine (Pathway on WSL)..." -ForegroundColor Cyan
+# Use WSL python3 to run the Pathway app
+$backend = Start-Process wsl -ArgumentList "-d", "Ubuntu", "python3", "src/pathway_app.py" -PassThru -WindowStyle Minimized
 
 # 3. Start Streamlit Dashboard
 Write-Host "Starting Streamlit Dashboard (dashboard/main.py)..." -ForegroundColor Cyan
