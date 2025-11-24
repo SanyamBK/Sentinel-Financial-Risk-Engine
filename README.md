@@ -6,7 +6,7 @@ Sentinel is a real-time anomaly detection system that bridges the gap between Qu
 *   **Real-Time Volatility Monitoring**: Calculates rolling standard deviation on live market data.
 *   **AI-Powered Analysis**: Uses Google Gemini 2.5 Flash to explain market anomalies by correlating them with breaking news.
 *   **Live Dashboard**: Interactive Streamlit dashboard for real-time visualization.
-*   **Pure Python Architecture**: Lightweight, dependency-free simulation engine.
+*   **Pathway + Pure Python**: Two engine options - Pathway (WSL) and Pure Python (Windows).
 
 ## Installation
 
@@ -16,7 +16,7 @@ Sentinel is a real-time anomaly detection system that bridges the gap between Qu
     cd Sentinel-Financial-Risk-Engine
     ```
 
-2.  **Set up Virtual Environment**:
+2.  **Set up Virtual Environment** (for Windows Pure Python version):
     ```bash
     python -m venv .venv
     # Windows
@@ -26,42 +26,14 @@ Sentinel is a real-time anomaly detection system that bridges the gap between Qu
     ```
 
 3.  **Install Dependencies**:
+    **Windows (Pure Python)**:
     ```bash
     pip install pandas streamlit google-generativeai python-dotenv
     ```
-
-4.  **Configure API Key**:
-    Create a `.env` file in the root directory:
-# Sentinel: Real-Time Financial Risk & Sentiment Engine
-
-Sentinel is a real-time anomaly detection system that bridges the gap between Quantitative Finance (Numbers) and Qualitative Analysis (News). It monitors high-frequency market data for statistical anomalies (Flash Crashes) and, upon detection, instantly triggers an AI Agent to read simultaneous news headlines and explain the *root cause* of the crash.
-
-## Features
-*   **Real-Time Volatility Monitoring**: Calculates rolling standard deviation on live market data.
-*   **AI-Powered Analysis**: Uses Google Gemini 2.5 Flash to explain market anomalies by correlating them with breaking news.
-*   **Live Dashboard**: Interactive Streamlit dashboard for real-time visualization.
-*   **Pure Python Architecture**: Lightweight, dependency-free simulation engine.
-
-## Installation
-
-1.  **Clone the Repository**:
+    
+    **WSL (Pathway)**:
     ```bash
-    git clone https://github.com/SanyamBK/Sentinel-Financial-Risk-Engine.git
-    cd Sentinel-Financial-Risk-Engine
-    ```
-
-2.  **Set up Virtual Environment**:
-    ```bash
-    python -m venv .venv
-    # Windows
-    .venv\Scripts\activate
-    # Linux/Mac
-    source .venv/bin/activate
-    ```
-
-3.  **Install Dependencies**:
-    ```bash
-    pip install pandas streamlit google-generativeai python-dotenv
+    wsl -d Ubuntu python3 -m pip install --break-system-packages pathway google-generativeai python-dotenv
     ```
 
 4.  **Configure API Key**:
