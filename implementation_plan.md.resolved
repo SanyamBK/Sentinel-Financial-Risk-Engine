@@ -1,0 +1,44 @@
+# Implementation Plan - Sentinel
+
+## Goal Description
+Build "Sentinel", a real-time anomaly detection system that monitors market data for volatility and uses an AI Agent (Gemini) to explain the root cause by correlating news headlines.
+
+## User Review Required
+- **API Key**: The user will need to provide a Google Gemini API key in an `.env` file or environment variable. I will assume `GOOGLE_API_KEY` is available or ask for it.
+- **Pathway Installation**: Ensure `pathway` and `streamlit` are installed.
+
+## Proposed Changes
+
+### Data Generation
+#### [NEW] [gen_data.py](file:///d:/Contests/Hacker's Premier League/gen_data.py)
+- Script to generate synthetic `stream_prices.csv` and `stream_news.csv`.
+- Logic: 1 hour of data, crash at 45:00, explanation headline at 44:50.
+
+### Pathway Backend
+#### [NEW] [main.py](file:///d:/Contests/Hacker's Premier League/main.py)
+- **Ingestion**: `pw.demo.replay_csv` for prices and news.
+- **Processing**:
+    - 30s tumbling window for volatility (`std`).
+    - ASOF join to link news to price windows.
+    - Filter: `volatility > 0.5`.
+- **AI Integration**:
+    - UDF using `google.generativeai`.
+    - Prompt: "Market Volatility is High. Latest News is {headline}. Explain the connection."
+- **Output**: JSONL file `sentinel_output.jsonl`.
+
+### Dashboard
+#### [NEW] [app.py](file:///d:/Contests/Hacker's Premier League/app.py)
+- Streamlit app.
+- Reads `sentinel_output.jsonl`.
+- Displays metrics and AI alerts.
+
+## Verification Plan
+### Automated Tests
+- None planned for this prototype.
+
+### Manual Verification
+1.  Run `python gen_data.py`.
+2.  Run `python main.py`.
+3.  Run `streamlit run app.py`.
+4.  Observe the dashboard as the simulation runs (fast-forwarded).
+5.  Confirm "Red Alert" appears when the crash occurs.

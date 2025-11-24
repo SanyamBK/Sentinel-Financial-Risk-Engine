@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Environment Variables
+.env
+
+# Data (Generated)
+data/
+stream_prices.csv
+stream_news.csv
+sentinel_output.jsonl
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
