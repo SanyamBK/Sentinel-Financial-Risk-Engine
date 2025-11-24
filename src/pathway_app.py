@@ -2,12 +2,9 @@ import pathway as pw
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
-from datetime import datetime
+from datetime import timedelta
 
 # --- Configuration ---
-# Load .env file (assuming it's in the project root, accessible via relative path or mounted volume)
-# In WSL, we might need to be careful about paths. 
-# We'll assume the script is run from the project root.
 load_dotenv()
 
 API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -18,11 +15,11 @@ else:
 
 # --- UDF Definition ---
 @pw.udf
-def analyze_crash(volatility: float, headline: str) -> str:
+def analyze_crash(volatility: float | None, headline: str | None) -> str:
     """
     Analyzes the crash using Gemini if volatility is high.
     """
-    if volatility < 0.5:
+    if volatility is None or volatility < 0.5:
         return "Market Stable"
     
     if not headline:
@@ -57,48 +54,41 @@ def run_sentinel():
 
     # 2. Windowing & Volatility Calculation
     # 30-second tumbling window
-    windowed_stats = (
-        prices.windowby(
-            pw.this.timestamp,
-            window=pw.temporal.tumbling(duration=30),
-            behavior=pw.temporal.common_behavior(
-                cutoff=pw.temporal.cutoff.delayed_by(1)
-            )
-        ).reduce(
-            window_end=pw.this._pw_window_end,
-            volatility=pw.reductions.std(pw.this.price),
-            current_price=pw.reductions.last(pw.this.price),
-        )
+    windowed_stats = prices.windowby(
+        prices.timestamp,
+        window=pw.temporal.tumbling(duration=timedelta(seconds=30)),
+        behavior=pw.temporal.common_behavior()
+    ).reduce(
+        window_end=pw.this._pw_window_end,
+        volatility=pw.reducers.stddev(pw.this.price),
+        current_price=pw.reducers.latest(pw.this.price)
     )
 
-    # 3. Enrichment (ASOF Join / Interval Join)
-    # We want to attach the latest news to the price window.
-    # We use join_interval to look back 10 minutes for news.
-    enriched = windowed_stats.join_interval(
+    # 3. Enrichment (ASOF Join)
+    # Attach the latest news to each price window
+    enriched = windowed_stats.asof_join(
         news,
-        lower_bound=pw.temporal.Timestamp(minutes=10), 
-        upper_bound=pw.temporal.Timestamp(0),
-        left_time=windowed_stats.window_end,
-        right_time=news.timestamp
-    ).reduce(
-        window_end=pw.this.window_end,
-        volatility=pw.this.volatility,
-        current_price=pw.this.current_price,
-        # Get the headline with the max timestamp (latest news)
-        headline=pw.reductions.max(pw.this.headline, key=pw.this.timestamp_right)
+        windowed_stats.window_end,
+        news.timestamp,
+        how=pw.JoinMode.LEFT
+    ).select(
+        timestamp=windowed_stats.window_end,
+        price=windowed_stats.current_price,
+        volatility=windowed_stats.volatility,
+        headline=news.headline
     )
     
     # 4. AI Analysis & Output
     final_stream = enriched.select(
-        timestamp=pw.this.window_end,
-        price=pw.this.current_price,
+        timestamp=pw.this.timestamp,
+        price=pw.this.price,
         volatility=pw.this.volatility,
         headline=pw.this.headline,
         ai_analysis=analyze_crash(pw.this.volatility, pw.this.headline)
     )
 
     # Output to JSONL
-    pw.io.jsonl.write(
+    pw.io.jsonlines.write(
         final_stream,
         "data/sentinel_output.jsonl"
     )
