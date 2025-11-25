@@ -1,0 +1,116 @@
+Pathway Hackathon Problem Statement
+
+1. Pathway Overview
+Pathway - a Python-based framework for real-time AI pipelines - is designed to ingest data streams from more than 300 sources, process them on the fly, and make the results queryable with large-language models (LLMs). It provides connectors for files, databases, message queues and enterprise services, automatically detects new records and updates, chunks and embeds documents, and maintains a live vector index.
+
+Unlike most retrieval-augmented generation (RAG) stacks that rely on external vector databases, Pathway's Document Store keeps the vector index inside the pipeline. It combines semantic similarity search with BM25 full-text search to return relevant documents and is automatically synchronised with data sources. This live indexing avoids the need to re-ingest data in batches and allows generative models to answer queries using the latest information.
+
+Pathway's streaming engine also supports building microservices and complex data transforms. These features make Pathway suitable for industry-level applications where information is constantly changing and decisions must be made quickly.
+
+2. Key Ideas Behind Real-Time AI and RAG
+
+• Real-Time vs Batch Processing
+Traditional batch systems process data periodically; this introduces delays and stale information. Real-time streaming ingests, processes and outputs data within milliseconds, enabling decision-makers to react quickly and avoid outdated insights. Finance requires fast reaction to events; real-time streaming is therefore a competitive differentiator.
+
+• Freshness of Indexes
+LLMs do not have an inherent sense of time. To answer queries using up-to-date information, RAG systems must ensure their indexes stay synchronised with external data. Pathway's Document Store continuously parses, chunks, embeds and indexes documents as they arrive and removes deleted documents automatically. This is different from vector databases that must be re-ingested periodically or from architectures where retrieval logic is locked into the DB.
+
+• Event-Driven Architecture
+Modern AI agents require access to consistent, real-time data. Event-driven architectures (EDA), often powered by message brokers such as Apache Kafka and stream processors like Flink, provide exactly-once semantics and scalable throughput; they are the backbone of agentic AI. Without high-integrity streaming data, autonomous agents may act on stale or inconsistent information.
+
+• Benefits of Data Streaming
+Continuous streaming allows businesses to react swiftly to changes, trends and anomalies, leading to better customer experiences, optimized operations and proactive issue resolution. Streaming also automates processes, reduces human error and supports cost-efficient operations.
+
+3. [cite_start]Use-Case Themes in Financial Services [cite: 49]
+
+1. [cite_start]Real-Time Market Analytics and Risk Management [cite: 50]
+Streaming ETL is essential for processing tick-by-tick market data, computing option Greeks and other risk metrics. Pathway ingests historical and live CME market data and continuously computes Delta, Gamma, Theta, Vega and Rho using the Black-76 model. [cite_start]The pipeline updates values in real time, making it suitable for traders who need live exposures. [cite: 51, 52, 53]
+
+[cite_start]Developer Resources and Technical Requirements [cite: 79]
+
+To ensure your project demonstrates strong real-time and production-readiness capabilities, all teams must adhere to the following requirements and leverage the official Pathway developer ecosystem.
+
+Exploit pathway to the max
+
+1. [cite_start]Live Data Ingestion with Pathway Connectors [cite: 82]
+Your system must utilize Pathway's real-time connectors to ingest streaming data relevant to your chosen use case. Pathway provides built-in connectors for files, databases, message queues, APIs, and web sources, all operating in streaming mode, ensuring results update in real time as data changes.
+
+If your desired data source is not directly supported, you must extend Pathway's ingestion layer by implementing your own connector using the Custom Python Connector. This allows you to adapt Pathway to new sources and contributes to enhancing the engine's capabilities.
+
+Documentation: https://pathway.com/developers/user-guide/connect/connectors-in-pathway
+Create a custom Python connector: https://pathway.com/developers/user-guide/connect/connectors/custom-python-connectors
+Python web scraper example: https://pathway.com/developers/user-guide/connect/python-web-scraping
+
+Artificial Data Streams with the demo Module (in case you find it difficult to access free streaming data APIs):
+https://pathway.com/developers/user-guide/connect/artificial-streams
+
+At least one live or simulated data feed must be integrated.
+Examples include:
+- Subscribing to live market APIs (e.g., Alpha Vantage, Polygon.io)
+- Reading transaction streams from Kafka or sockets
+- Simulating live events via Pathway's demo utilities
+
+If live data is unavailable, teams may simulate streaming input by replaying static datasets with realistic time intervals.
+
+2. [cite_start]Core Concepts [cite: 98]
+Before starting development, familiarize yourself with Pathway's foundational ideas and architecture. These concepts will help you understand incremental computation, table semantics, and event-driven design principles that power every Pathway pipeline.
+Pathway Core Concepts: https://pathway.com/developers/user-guide/introduction/concepts/#core-concepts
+
+3. [cite_start]Streaming Transformations and Feature Engineering [cite: 102]
+All data transformations must be performed in streaming mode using Pathway's transformation APIs. Your pipeline should support:
+- Incremental joins, filters, and aggregations
+- Stateful window computations
+- Real-time feature engineering for signals and indicators
+
+Documentation: https://pathway.com/developers/user-guide/data-transformation/table-operations
+Temporal Data Windows: https://pathway.com/developers/user-guide/temporal-data/windows-manual
+
+Ensure computations are low-latency and modular, with clear separation between ingestion, transformation, and output modules.
+
+4. [cite_start]LLM Integration for Real-Time Insights [cite: 110]
+To make your system interactive and human-centric, integrate Pathway's LLM xPack enabling smooth orchestration of retrieval, summarization, and reasoning over live data.
+You may use it for:
+- Live retrieval-augmented generation (RAG)
+- Automated report generation
+- Explainable insights (e.g., credit decision rationale, fraud summary reports)
+
+Documentation: https://pathway.com/developers/user-guide/llm-xpack/overview
+Pathway MCP Server: https://pathway.com/developers/user-guide/llm-xpack/pathway_mcp_server
+
+5. [cite_start]Mandatory Learning Resources and Templates [cite: 117]
+These resources will accelerate development and ensure alignment with Pathway's architecture.
+
+Templates
+RAG App Templates (YAML): https://pathway.com/developers/templates/
+ETL and ML Time-Series Pipelines (Live Data Framework): https://pathway.com/developers/templates/?tab=live-data-framework
+
+Hands-On Tutorials
+Vanilla RAG with OpenAI (Python): https://pathway.com/bootcamps/rag-and-llms/coursework/module-5-hands-on-development/1-first-rag-pipeline/building-with-open-ai
+RAG with Gemini: https://pathway.com/bootcamps/rag-and-llms/coursework/module-5-hands-on-development/1-first-rag-pipeline/rag-with-gemini-and-other-open-ai-alternatives
+Real-Time RAG using LlamaIndex: https://pathway.com/bootcamps/rag-and-llms/coursework/module-5-hands-on-development/3-realtime-rag-with-llamaindex-langchain-and-pathway/implementation-with-llamaindex
+Real-Time RAG using LangChain: https://pathway.com/bootcamps/rag-and-llms/coursework/module-5-hands-on-development/3-realtime-rag-with-llamaindex-langchain-and-pathway/implementation-with-langchain
+
+Advanced Notebooks
+Explore the step-by-step cookbooks demonstrating how to combine Pathway's real-time indexing with LangGraph multi-step agent flows:
+https://github.com/pathwaycom/llm-app/blob/main/cookbooks/self-rag-agents/pathway_deploy_langgraph_agents.ipynb
+
+If you are only interested in using Pathway as an always up-to-date document store and want to deploy your agents your own way (via Flask, FastAPI, etc.), then check out this cookbook:
+https://github.com/pathwaycom/llm-app/blob/main/cookbooks/self-rag-agents/pathway_agentic_rag.ipynb
+
+Evaluation & Benchmarks
+Evaluating RAG Applications with RAGAS: https://pathway.com/blog/evaluating-rag
+
+Deployment
+Docker Deployment Guide: https://pathway.com/developers/user-guide/deployment/docker-deployment
+Persistence and Fault Tolerance: https://pathway.com/developers/user-guide/deployment/persistence
+Licensing Guide (For unlocking Advanced Features): https://pathway.com/developers/templates/licensing-guide
+
+Reference Implementations
+Option Greeks Computation with Databento: https://pathway.com/developers/templates/etl/option-greeks/
+Real-Time Multimodal Data Processing (Docling): https://pathway.com/blog/multimodal-data-processing
+La Poste ETA Microservices Case Study: https://pathway.com/blog/pathway-laposte-microservices/
+Pathway Community Spotlights:
+https://pathway.com/blog/?tag=community
+https://pathway.com/blog/ai-agents-finance-due-diligence/
+https://pathway.com/blog/live-ai-multi-agentic-rag
+https://pathway.com/blog/financial-intelligence-with-event-based-state-machine

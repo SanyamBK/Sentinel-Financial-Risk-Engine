@@ -12,17 +12,16 @@ env/
 .env
 
 # Data (Generated)
-data/
-stream_prices.csv
-stream_news.csv
-sentinel_output.jsonl
+# data/
+# stream_prices.csv
+# stream_news.csv
+# sentinel_output.jsonl
 
 # Logs
-*.log
+# *.log
 
 # IDE
 .vscode/
 .idea/
 
-# Project Documentation
-project_requirements.md
+

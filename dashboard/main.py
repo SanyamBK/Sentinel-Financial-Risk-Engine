@@ -20,7 +20,8 @@ def main():
     placeholder_chart = st.empty()
     placeholder_alert = st.empty()
 
-    output_file = get_data_paths()
+    # Use the root directory file
+    output_file = "sentinel_output.jsonl"
 
     # --- Main Loop ---
     while True:

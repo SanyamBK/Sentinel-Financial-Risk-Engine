@@ -1,0 +1,53 @@
+WARNING: GOOGLE_API_KEY not found in .env. AI features will fail.
+Starting Sentinel Engine (Pure Python)...
+Simulation Start: 2025-11-25 00:00:00
+Sim Time: 2025-11-25 00:00:00 | Price: 150.08 | Vol: 0.0000
+Sim Time: 2025-11-25 00:00:20 | Price: 150.05 | Vol: 0.0512
+Sim Time: 2025-11-25 00:00:40 | Price: 150.05 | Vol: 0.0654
+Sim Time: 2025-11-25 00:01:00 | Price: 150.14 | Vol: 0.0623
+Sim Time: 2025-11-25 00:01:20 | Price: 149.94 | Vol: 0.0820
+Sim Time: 2025-11-25 00:01:40 | Price: 150.03 | Vol: 0.0912
+Sim Time: 2025-11-25 00:02:00 | Price: 149.89 | Vol: 0.1646
+Sim Time: 2025-11-25 00:02:20 | Price: 149.86 | Vol: 0.0915
+Sim Time: 2025-11-25 00:02:40 | Price: 149.40 | Vol: 0.2062
+Sim Time: 2025-11-25 00:03:00 | Price: 149.31 | Vol: 0.1234
+Sim Time: 2025-11-25 00:03:20 | Price: 149.22 | Vol: 0.0876
+Sim Time: 2025-11-25 00:03:40 | Price: 149.17 | Vol: 0.0783
+Sim Time: 2025-11-25 00:04:00 | Price: 149.22 | Vol: 0.1143
+Sim Time: 2025-11-25 00:04:20 | Price: 149.25 | Vol: 0.0740
+Sim Time: 2025-11-25 00:04:40 | Price: 148.91 | Vol: 0.1860
+Sim Time: 2025-11-25 00:05:00 | Price: 149.10 | Vol: 0.1262
+Sim Time: 2025-11-25 00:05:20 | Price: 149.22 | Vol: 0.0464
+Sim Time: 2025-11-25 00:05:40 | Price: 149.21 | Vol: 0.0744
+Sim Time: 2025-11-25 00:06:00 | Price: 149.40 | Vol: 0.0972
+Sim Time: 2025-11-25 00:06:20 | Price: 149.34 | Vol: 0.0408
+Sim Time: 2025-11-25 00:06:40 | Price: 149.63 | Vol: 0.1425
+Sim Time: 2025-11-25 00:07:00 | Price: 149.75 | Vol: 0.0590
+Sim Time: 2025-11-25 00:07:20 | Price: 149.70 | Vol: 0.0794
+Sim Time: 2025-11-25 00:07:40 | Price: 149.63 | Vol: 0.1014
+Sim Time: 2025-11-25 00:08:00 | Price: 150.04 | Vol: 0.1314
+Sim Time: 2025-11-25 00:08:20 | Price: 149.91 | Vol: 0.0971
+Sim Time: 2025-11-25 00:08:40 | Price: 149.95 | Vol: 0.0872
+Sim Time: 2025-11-25 00:09:00 | Price: 149.26 | Vol: 0.2353
+Sim Time: 2025-11-25 00:09:20 | Price: 149.32 | Vol: 0.1268
+Sim Time: 2025-11-25 00:09:40 | Price: 149.16 | Vol: 0.0999
+Sim Time: 2025-11-25 00:10:00 | Price: 148.98 | Vol: 0.0798
+Sim Time: 2025-11-25 00:10:20 | Price: 148.82 | Vol: 0.1250
+Sim Time: 2025-11-25 00:10:40 | Price: 148.98 | Vol: 0.0936
+Sim Time: 2025-11-25 00:11:00 | Price: 149.33 | Vol: 0.1195
+Sim Time: 2025-11-25 00:11:20 | Price: 149.42 | Vol: 0.1130
+Sim Time: 2025-11-25 00:11:40 | Price: 149.12 | Vol: 0.1700
+Sim Time: 2025-11-25 00:12:00 | Price: 148.81 | Vol: 0.1708
+Sim Time: 2025-11-25 00:12:20 | Price: 148.68 | Vol: 0.0978
+Sim Time: 2025-11-25 00:12:40 | Price: 148.87 | Vol: 0.0924
+Sim Time: 2025-11-25 00:13:00 | Price: 148.06 | Vol: 0.3023
+Sim Time: 2025-11-25 00:13:20 | Price: 147.84 | Vol: 0.1384
+Sim Time: 2025-11-25 00:13:40 | Price: 147.96 | Vol: 0.0747
+Sim Time: 2025-11-25 00:14:00 | Price: 148.25 | Vol: 0.1616
+Sim Time: 2025-11-25 00:14:20 | Price: 148.82 | Vol: 0.1884
+Sim Time: 2025-11-25 00:14:40 | Price: 148.79 | Vol: 0.0998
+Traceback (most recent call last):
+  File "D:\Contests\Hacker's Premier League\src\engine.py", line 160, in <module>
+  File "D:\Contests\Hacker's Premier League\src\engine.py", line 107, in run_engine
+KeyboardInterrupt
+^C

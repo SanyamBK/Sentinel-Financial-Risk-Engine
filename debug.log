@@ -1,0 +1,20 @@
+This is not the real Pathway package.
+Visit https://pathway.com/developers/ to get Pathway.
+Already tried that? Visit https://pathway.com/troubleshooting/ to get help.
+Note: your platform is Windows-11-10.0.26200-SP0, your Python is CPython 3.13.5.
+This is not the real Pathway package.
+Visit https://pathway.com/developers/ to get Pathway.
+Already tried that? Visit https://pathway.com/troubleshooting/ to get help.
+Note: your platform is Windows-11-10.0.26200-SP0, your Python is CPython 3.13.5.
+WARNING: GOOGLE_API_KEY not found. AI features will fail.
+Traceback (most recent call last):
+  File "D:\Contests\Hacker's Premier League\main.py", line 15, in <module>
+    @pw.udf
+     ^^^^^^
+  File "D:\Contests\Hacker's Premier League\.venv\Lib\site-packages\pathway\__init__.py", line 61, in __getattr__
+    raise AttributeError(error)
+AttributeError: module 'pathway' has no attribute 'udf'
+This is not the real Pathway package.
+Visit https://pathway.com/developers/ to get Pathway.
+Already tried that? Visit https://pathway.com/troubleshooting/ to get help.
+Note: your platform is Windows-11-10.0.26200-SP0, your Python is CPython 3.13.5.

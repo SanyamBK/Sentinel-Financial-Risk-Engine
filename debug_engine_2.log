@@ -1,0 +1,3 @@
+WARNING: GOOGLE_API_KEY not found in .env. AI features will fail.
+Starting Sentinel Engine (Pure Python)...
+Error: Data files not found. Run gen_data.py first.
