@@ -51,7 +51,7 @@ def run_sentinel():
     print("🚀 Sentinel Financial Risk Engine Starting...")
     
     # 1. Ingestion using Pathway's replay_csv
-    # input_rate=1000 speeds up the 1-hour data to ~3.6 seconds for debugging
+    # input_rate=10 throttles the pipeline to prevent hitting Gemini's 30 RPM rate limit.
     prices_raw = pw.demo.replay_csv(
         path="data/stream_prices.csv",
         schema=pw.schema_from_csv("data/stream_prices.csv"),
