@@ -19,5 +19,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
-# Default command (can be overridden in docker-compose)
-CMD ["python", "src/pathway_app.py"]
+# Default command: Generate data then run engine
+CMD sh -c "python src/gen_data.py && python src/pathway_app.py"

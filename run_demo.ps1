@@ -8,7 +8,11 @@ if (-not $env:GOOGLE_API_KEY) {
     Write-Host "AI features will not work without it." -ForegroundColor Yellow
 }
 
-# 2. Check for Output File
+# 2. Generate Fresh Simulation Data
+Write-Host "Generating fresh simulation data..." -ForegroundColor Cyan
+wsl -d Ubuntu python3 src/gen_data.py
+
+# 3. Check for Output File
 $OutputFile = "sentinel_output.jsonl"
 if (Test-Path $OutputFile) {
     Remove-Item $OutputFile
