@@ -30,7 +30,7 @@ def analyze_crash(volatility: float | None, headline: str | None) -> str:
     if not headline:
         return "High Volatility detected, but no recent news found."
     try:
-        model = genai.GenerativeModel('gemini-2.5-flash')
+        model = genai.GenerativeModel('gemini-2.0-flash-lite')
         prompt = f"Market Volatility is High (Score: {volatility:.2f}). Latest News is: '{headline}'. Explain the connection in 1 sentence."
         response = model.generate_content(prompt)
         return response.text.strip()
@@ -55,13 +55,13 @@ def run_sentinel():
     prices_raw = pw.demo.replay_csv(
         path="data/stream_prices.csv",
         schema=pw.schema_from_csv("data/stream_prices.csv"),
-        input_rate=1000
+        input_rate=10
     )
     
     news_raw = pw.demo.replay_csv(
         path="data/stream_news.csv",
         schema=pw.schema_from_csv("data/stream_news.csv"),
-        input_rate=1000
+        input_rate=10
     )
 
     # 2. Parse Timestamps - EXPLICIT SELECTION ONLY
