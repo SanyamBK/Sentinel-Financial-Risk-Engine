@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  sentinel-engine:
+    build: .
+    container_name: sentinel-engine
+    command: python src/pathway_app.py
+    volumes:
+      - ./:/app
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  sentinel-dashboard:
+    build: .
+    container_name: sentinel-dashboard
+    command: streamlit run dashboard/main.py --server.port 8501 --server.address 0.0.0.0
+    volumes:
+      - ./:/app
+    ports:
+      - "8501:8501"
+    depends_on:
+      - sentinel-engine
+    env_file:
+      - .env
+    restart: unless-stopped

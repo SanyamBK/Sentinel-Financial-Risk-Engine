@@ -22,38 +22,6 @@ Sentinel is a real-time anomaly detection system that bridges the gap between Qu
     ```
 
 3.  **Install Dependencies in WSL**:
-    ```bash
-    wsl -d Ubuntu python3 -m pip install --break-system-packages pathway google-generativeai python-dotenv
-    ```
-
-4.  **Install Streamlit (Windows)**:
-    ```powershell
-    python -m venv .venv
-    .venv\Scripts\activate
-    pip install streamlit pandas
-    ```
-
-5.  **Configure API Key**:
-    Create a `.env` file in the root directory:
-    ```env
-    GOOGLE_API_KEY=your_gemini_api_key_here
-    ```
-
-## Usage
-
-1.  **Generate Synthetic Data**:
-    ```bash
-    wsl -d Ubuntu python3 src/gen_data.py
-    ```
-
-2.  **Run the Demo**:
-    **Windows (PowerShell)**:
-    ```powershell
-    .\run_demo.ps1
-    ```
-    This will start the Pathway engine in WSL and the Streamlit dashboard in Windows.
-
-## Architecture
 *   `src/gen_data.py`: Generates synthetic price and news streams.
 *   `src/pathway_app.py`: **Pathway engine** - Uses `pw.windowby`, `pw.join_interval`, `pw.udf`.
 *   `dashboard/`: Streamlit application components.

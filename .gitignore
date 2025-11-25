@@ -1,15 +1,3 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Virtual Environment
-.venv/
-venv/
-env/
-
-# Environment Variables
-.env
 
 # Data (Generated)
 # data/
@@ -17,11 +5,26 @@ env/
 # stream_news.csv
 # sentinel_output.jsonl
 
-# Logs
-# *.log
+# Documentation (Internal)
+original_problem_statement.txt
+project_requirements.md
+problem_statement.md
+
+# Logs and Output
+*.log
+*.jsonl
+pathway_*.txt
+debug_*.txt
+debug_*.log
+
+# Test Scripts
+test_*.py
+check_api.py
 
 # IDE
 .vscode/
 .idea/
 
+# Secret Keys
+.env
 

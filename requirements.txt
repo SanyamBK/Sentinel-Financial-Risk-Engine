@@ -1,0 +1,7 @@
+pathway
+pandas
+google-generativeai
+python-dotenv
+streamlit
+plotly
+watchdog
